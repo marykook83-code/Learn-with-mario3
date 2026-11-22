@@ -1,92 +1,114 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-reading-help="off" data-contrast="default" data-dyslexia="off">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1d3b72">
   <title>Mario's English Grammar</title>
-  <link rel="icon" href="assets/mario/mario_smile.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/accessibility.css">
 </head>
 <body>
-  <a class="skip-link" href="#app">Skip to content</a>
-
-  <header class="site-header">
-    <a class="brand" href="#/welcome">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>Mario's Grammar</span>
-    </a>
-    <nav id="main-nav" aria-label="Main"></nav>
-    <div class="header-tools">
-      <button id="reading-help-toggle" class="btn btn-tool" type="button" aria-pressed="false" aria-haspopup="dialog">
-        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 18l5-12 5 12M7 14h6M17 18l2.5-6 2.5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>Reading Help</span>
-      </button>
-      <div id="account-chip"></div>
-    </div>
+  <header class="topbar" id="nav" hidden>
+    <strong class="brand">Mario's Grammar</strong>
+    <nav>
+      <button data-go="view-home">Home</button>
+      <button data-go="view-progress">Progress</button>
+      <button data-go="view-practice">Test Yourself</button>
+      <button data-go="view-profile">My Account</button>
+      <button data-go="view-about">About</button>
+      <button data-logout>Log out</button>
+    </nav>
   </header>
 
-  <main id="app" tabindex="-1"><p class="loading" style="padding:3rem 0;text-align:center">Loading…</p></main>
+  <main>
+    <section class="view" id="view-welcome" hidden>
+      <div class="welcome">
+        <img class="welcome-mario" src="assets/mario/welcome.png" alt="Mario the fox waving">
+        <div class="bubble">
+          <p id="welcome-text" dir="rtl" lang="ar">أهلًا بيكم! أنا ماريو، وهنتعلم جرامر الإنجليزي مع بعض. هنبدأ بشرح بسيط، وبعدها محادثة وأسئلة تدريب، واختبار في نهاية كل فصل، ومتابعة لتقدمك خطوة بخطوة. يلا نبدأ!</p>
+          <p class="note" id="welcome-note"></p>
+          <div class="actions">
+            <button class="primary" id="start-button">Get Started</button>
+            <button class="speaker" id="speak-welcome" aria-label="Listen to Mario">Listen</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div id="player" class="player" role="region" aria-label="Audio controls" hidden>
-    <button id="player-toggle" class="btn btn-icon" type="button" aria-label="Pause"></button>
-    <button id="player-stop" class="btn btn-icon" type="button" aria-label="Stop">
-      <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
-    </button>
-    <span id="player-status" class="player-status" aria-live="polite"></span>
-    <label class="player-speed"><span class="sr-only">Playback speed</span>
-      <select id="player-speed">
-        <option value="0.75">0.75x</option>
-        <option value="1">1x</option>
-        <option value="1.25">1.25x</option>
-        <option value="1.5">1.5x</option>
-      </select>
-    </label>
-  </div>
+    <section class="view narrow" id="view-auth" hidden>
+      <img class="mario-small" src="assets/mario/smile.png" alt="Mario smiling">
+      <h1>Welcome</h1>
+      <div class="tabs" role="tablist">
+        <button data-mode="login" role="tab" aria-selected="true">Log in</button>
+        <button data-mode="register" role="tab" aria-selected="false">Register</button>
+      </div>
+      <form id="auth-form">
+        <label>Email<input id="email" type="email" autocomplete="email" required></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" minlength="6" required></label>
+        <button class="primary" id="auth-submit" type="submit">Log in</button>
+      </form>
+      <p class="divider">or</p>
+      <button class="secondary" id="google-button" type="button">Continue with Google</button>
+      <p id="auth-status" class="status" role="status"></p>
+    </section>
 
-  <dialog id="settings-dialog" aria-labelledby="settings-title">
-    <div class="dialog-head">
-      <h2 id="settings-title">Reading Help and audio</h2>
-      <button id="settings-close" class="btn btn-icon" type="button" aria-label="Close">
-        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-    <div id="settings-dialog-body"></div>
-  </dialog>
+    <section class="view narrow" id="view-profile" hidden>
+      <h1 id="profile-title">My Account</h1>
+      <p id="profile-intro"></p>
+      <form id="profile-form">
+        <div class="avatar-row">
+          <div class="avatar large" id="profile-avatar"></div>
+          <div class="avatar-actions">
+            <label class="secondary file-button">Choose from gallery<input id="photo-gallery" type="file" accept="image/*" hidden></label>
+            <label class="secondary file-button">Take a photo<input id="photo-camera" type="file" accept="image/*" capture="user" hidden></label>
+            <button class="link" id="remove-photo" type="button">Remove picture</button>
+          </div>
+        </div>
+        <label>Nickname<input id="nickname" maxlength="20" autocomplete="nickname" required></label>
+        <p class="note" id="account-email-row">Signed in as <span id="account-email"></span></p>
+        <button class="primary" id="profile-save" type="submit">Save</button>
+        <p id="profile-status" class="status" role="status"></p>
+      </form>
+      <fieldset class="settings" id="settings">
+        <legend>Reading Help and Audio</legend>
+        <label class="check"><input type="checkbox" id="set-help"> Reading Help (word highlighting while listening)</label>
+        <label>Text size <input type="range" id="set-size" min="100" max="160" step="10"></label>
+        <label>Line spacing <input type="range" id="set-line" min="16" max="26" step="2"></label>
+        <label>Voice speed <input type="range" id="set-rate" min="0.7" max="1.5" step="0.1"></label>
+        <label class="check"><input type="checkbox" id="set-contrast"> High contrast</label>
+        <label class="check"><input type="checkbox" id="set-font"> Dyslexia-friendly font</label>
+      </fieldset>
+      <button class="link" id="logout-account" data-logout>Log out</button>
+    </section>
 
-  <div id="toasts" class="toasts" aria-live="polite"></div>
+    <section class="view" id="view-home" hidden>
+      <div class="greeting">
+        <div class="avatar" id="home-avatar"></div>
+        <div>
+          <h1>Hi, <span id="home-name"></span></h1>
+          <p>Your chapters are listed below.</p>
+        </div>
+      </div>
+      <button class="primary continue" id="continue-button" hidden>Continue Learning</button>
+      <div id="units"></div>
+    </section>
 
-  <noscript><p style="padding:2rem;text-align:center">JavaScript is turned off. Please turn it on to use this website. فعّل الجافاسكريبت من المتصفح.</p></noscript>
-  <script>
-    (function () {
-      var app = document.getElementById("app");
-      function fail(title, lines) {
-        var html = '<div class="notice notice-error" style="max-width:720px;margin:2rem auto"><h2 style="margin-top:0">' + title + "</h2>";
-        for (var i = 0; i < lines.length; i += 1) html += "<p>" + lines[i] + "</p>";
-        app.innerHTML = html + "</div>";
-      }
-      if (location.protocol === "file:") {
-        fail("Open the website through a local server", [
-          "This page was opened by double-clicking the file, so the browser blocks its code.",
-          "Open a terminal inside the <b>frontend</b> folder, run <code>python -m http.server 5500</code>, then open <code>http://localhost:5500</code>.",
-          "الموقع لازم يتفتح من خلال سيرفر محلي، مش بالدبل كليك على الملف."
-        ]);
-        return;
-      }
-      import("./js/app.js").catch(function (error) {
-        console.error(error);
-        fail("The website could not start", [
-          "Technical message: <code>" + String(error && error.message ? error.message : error).replace(/</g, "&lt;") + "</code>",
-          "Common causes: the internet is down or Firebase files are blocked, or <code>js/firebase-config.js</code> is not the version from this project. Press F12 and open the Console tab for more details.",
-          "الموقع ما قدرش يشتغل. ابعتي الرسالة اللي فوق عشان نصلحها."
-        ]);
-      });
-    })();
-  </script>
+    <section class="view narrow" id="view-progress" hidden><div id="progress-body"></div></section>
+    <section class="view narrow" id="view-practice" hidden><div id="practice-body"></div></section>
+
+    <section class="view narrow" id="view-chapter" hidden>
+      <div id="chapter-body"></div>
+    </section>
+
+    <section class="view narrow" id="view-about" hidden>
+      <img class="mario-small" src="assets/mario/thinking.png" alt="Mario thinking">
+      <h1>About</h1>
+      <p>This platform helps Second Baccalaureate students understand and practice English grammar with Mario, through short explanations, conversations, practice questions and chapter quizzes.</p>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
