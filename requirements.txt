@@ -1,0 +1,6 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+google-cloud-texttospeech>=2.29.0
+google-auth>=2.29
+requests>=2.31
+python-dotenv>=1.0

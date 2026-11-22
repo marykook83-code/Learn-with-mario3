@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "OpenDyslexic";
+  font-display: swap;
+  src: local("OpenDyslexic"), local("OpenDyslexic Regular"),
+    url("../assets/fonts/OpenDyslexic-Regular.woff2") format("woff2"),
+    url("https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/woff/OpenDyslexic-Regular.woff") format("woff");
+}
+
+html[data-dyslexia="on"] body,
+html[data-dyslexia="on"] button,
+html[data-dyslexia="on"] input,
+html[data-dyslexia="on"] select {
+  font-family: "OpenDyslexic", "Readex Pro", "Segoe UI", sans-serif;
+  letter-spacing: .02em;
+}
+
+html[data-contrast="soft"] {
+  --bg: #f6efdc;
+  --surface: #fffaf0;
+  --ink: #2a2924;
+  --muted: #52504a;
+  --line: #d8ccb0;
+  --tint: #efe6cd;
+  --green-bg: #dfeccf;
+  --red-bg: #f6ddd2;
+}
+
+html[data-contrast="high"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #000000;
+  --muted: #1a1a1a;
+  --line: #000000;
+  --tint: #eeeeee;
+  --blue: #00206b;
+  --primary: #8a2a00;
+  --primary-hover: #5f1d00;
+  --green: #00592a;
+  --green-bg: #d9f2e3;
+  --red: #8f1500;
+  --red-bg: #ffe2dc;
+  --focus: #0000ee;
+}
+html[data-contrast="high"] .panel,
+html[data-contrast="high"] .msg-body,
+html[data-contrast="high"] .option,
+html[data-contrast="high"] .chapter-tile,
+html[data-contrast="high"] .review-item,
+html[data-contrast="high"] .stat { border-width: 2px; }
+html[data-contrast="high"] a { text-decoration: underline; }
+
+html[data-contrast="dark"] {
+  --bg: #0f1420;
+  --surface: #192135;
+  --ink: #f2f5fb;
+  --muted: #b7c0d3;
+  --line: #36425f;
+  --tint: #232d47;
+  --blue: #9dbdff;
+  --blue-deep: #cfe0ff;
+  --primary: #ff9a5c;
+  --primary-hover: #ffb27f;
+  --on-primary: #1b0e00;
+  --green: #6fdc9b;
+  --green-bg: #17402a;
+  --red: #ff9a8c;
+  --red-bg: #4a1f1a;
+  --focus: #8ab4ff;
+}
+html[data-contrast="dark"] #main-nav a[aria-current="page"],
+html[data-contrast="dark"] .btn-tool[aria-pressed="true"],
+html[data-contrast="dark"] .scene-title,
+html[data-contrast="dark"] .continue-card,
+html[data-contrast="dark"] .option.is-selected .option-letter,
+html[data-contrast="dark"] .speak-btn:hover { background: #2d4f96; color: #fff; }
+html[data-contrast="dark"] .continue-card .btn-primary { background: #fff; color: #14295a; }
+html[data-contrast="dark"] .avatar-initial,
+html[data-contrast="dark"] .chapter-tile.is-done .tile-number,
+html[data-contrast="dark"] .option.is-correct .option-letter,
+html[data-contrast="dark"] .option.is-wrong .option-letter { color: #0f1420; }
+html[data-contrast="dark"] .avatar-initial { background: #9dbdff; }
+html[data-contrast="dark"] .option.is-correct .option-letter { background: var(--green); }
+html[data-contrast="dark"] .option.is-wrong .option-letter { background: var(--red); }
+html[data-contrast="dark"] .chapter-tile.is-done .tile-number { background: var(--green); }
+html[data-contrast="dark"] .callout-tip { background: #1f2c4d; }
+html[data-contrast="dark"] .result-low { background: #4a3322; }
+html[data-contrast="dark"] .toast { background: #36425f; }
+
+.rh-group { display: inline; }
+.rh-word { display: inline-block; border-radius: 5px; transition: transform .12s ease, background-color .12s ease; }
+.rh-word.rh-active {
+  background: var(--highlight);
+  color: var(--on-highlight);
+  transform: scale(1.22);
+  box-shadow: 0 0 0 3px var(--highlight);
+  font-weight: 600;
+}
+
+html[data-reading-help="on"] .msg-body,
+html[data-reading-help="on"] .q-stem,
+html[data-reading-help="on"] .option-text,
+html[data-reading-help="on"] .why,
+html[data-reading-help="on"] .review-option {
+  line-height: var(--reading-line-height, 1.7);
+  word-spacing: .06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rh-word.rh-active { transform: none; }
+}

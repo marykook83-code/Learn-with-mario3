@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-reading-help="off" data-contrast="default" data-dyslexia="off">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1d3b72">
+  <title>Mario's English Grammar</title>
+  <link rel="icon" href="assets/mario/mario_smile.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+</head>
+<body>
+  <a class="skip-link" href="#app">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#/welcome">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Mario's Grammar</span>
+    </a>
+    <nav id="main-nav" aria-label="Main"></nav>
+    <div class="header-tools">
+      <button id="reading-help-toggle" class="btn btn-tool" type="button" aria-pressed="false" aria-haspopup="dialog">
+        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 18l5-12 5 12M7 14h6M17 18l2.5-6 2.5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Reading Help</span>
+      </button>
+      <div id="account-chip"></div>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"><p class="loading" style="padding:3rem 0;text-align:center">Loading…</p></main>
+
+  <div id="player" class="player" role="region" aria-label="Audio controls" hidden>
+    <button id="player-toggle" class="btn btn-icon" type="button" aria-label="Pause"></button>
+    <button id="player-stop" class="btn btn-icon" type="button" aria-label="Stop">
+      <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+    </button>
+    <span id="player-status" class="player-status" aria-live="polite"></span>
+    <label class="player-speed"><span class="sr-only">Playback speed</span>
+      <select id="player-speed">
+        <option value="0.75">0.75x</option>
+        <option value="1">1x</option>
+        <option value="1.25">1.25x</option>
+        <option value="1.5">1.5x</option>
+      </select>
+    </label>
+  </div>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="dialog-head">
+      <h2 id="settings-title">Reading Help and audio</h2>
+      <button id="settings-close" class="btn btn-icon" type="button" aria-label="Close">
+        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="settings-dialog-body"></div>
+  </dialog>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <noscript><p style="padding:2rem;text-align:center">JavaScript is turned off. Please turn it on to use this website. فعّل الجافاسكريبت من المتصفح.</p></noscript>
+  <script>
+    (function () {
+      var app = document.getElementById("app");
+      function fail(title, lines) {
+        var html = '<div class="notice notice-error" style="max-width:720px;margin:2rem auto"><h2 style="margin-top:0">' + title + "</h2>";
+        for (var i = 0; i < lines.length; i += 1) html += "<p>" + lines[i] + "</p>";
+        app.innerHTML = html + "</div>";
+      }
+      if (location.protocol === "file:") {
+        fail("Open the website through a local server", [
+          "This page was opened by double-clicking the file, so the browser blocks its code.",
+          "Open a terminal inside the <b>frontend</b> folder, run <code>python -m http.server 5500</code>, then open <code>http://localhost:5500</code>.",
+          "الموقع لازم يتفتح من خلال سيرفر محلي، مش بالدبل كليك على الملف."
+        ]);
+        return;
+      }
+      import("./js/app.js").catch(function (error) {
+        console.error(error);
+        fail("The website could not start", [
+          "Technical message: <code>" + String(error && error.message ? error.message : error).replace(/</g, "&lt;") + "</code>",
+          "Common causes: the internet is down or Firebase files are blocked, or <code>js/firebase-config.js</code> is not the version from this project. Press F12 and open the Console tab for more details.",
+          "الموقع ما قدرش يشتغل. ابعتي الرسالة اللي فوق عشان نصلحها."
+        ]);
+      });
+    })();
+  </script>
+</body>
+</html>

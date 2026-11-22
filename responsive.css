@@ -1,0 +1,59 @@
+@media (max-width: 1080px) {
+  .site-header { flex-wrap: wrap; gap: .5rem .8rem; padding-block: .5rem; }
+  .header-tools { margin-inline-start: auto; }
+  #main-nav {
+    order: 3; flex: 1 0 100%; margin: 0; overflow-x: auto; padding-bottom: .25rem;
+    -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+  }
+}
+
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .account-grid { grid-template-columns: 1fr; }
+  .trail { grid-template-columns: 1fr; }
+  .continue-mario { width: 130px; }
+}
+
+@media (max-width: 720px) {
+  .btn-tool span { display: none; }
+  .btn-tool { min-width: 44px; min-height: 44px; padding: .3rem; }
+  .account-chip span { display: none; }
+  main { padding-top: 1rem; }
+  h1 { font-size: 1.55rem; }
+  .welcome { grid-template-columns: 1fr; min-height: 0; gap: 1rem; }
+  .welcome h1 { font-size: 1.9rem; }
+  .welcome-art { order: -1; }
+  .welcome-mario { width: min(70%, 280px); }
+  .auth { grid-template-columns: 1fr; }
+  .auth-side { display: none; }
+  .about-mario { float: none; display: block; margin: 0 auto 1rem; }
+  .continue-card { flex-direction: column; align-items: flex-start; }
+  .continue-mario { display: none; }
+  .lesson-head { align-items: flex-start; }
+  .lesson-progress { align-items: flex-start; }
+  .msg { gap: .5rem; }
+  .mario-avatar { width: 40px; height: 40px; }
+  .avatar { width: 38px; height: 38px; }
+  .msg-body { padding-inline: .8rem; }
+  .feedback { flex-direction: column; }
+  .feedback-mario { width: 110px; align-self: center; }
+  .result { flex-direction: column; text-align: center; }
+  .result-mario { width: 160px; }
+  .result-body header { justify-content: center; }
+  .result-score { justify-content: center; }
+  .quiz-nav .btn { flex: 1; }
+  .lesson-footer .btn-primary { width: 100%; }
+  .player-status { display: none; }
+
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table tr { padding: .5rem 0; border-bottom: 1px solid var(--line); }
+  .table td { border: 0; display: flex; justify-content: space-between; gap: 1rem; padding: .3rem .9rem; text-align: end; }
+  .table td::before { content: attr(data-label); font-weight: 500; text-align: start; color: var(--muted); }
+}
+
+@media (max-width: 420px) {
+  .stats { gap: .5rem; }
+  .stat strong { font-size: 1.4rem; }
+  .q-stem { margin-right: 2.4rem; }
+}
