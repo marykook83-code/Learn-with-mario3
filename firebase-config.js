@@ -1,16 +1,20 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_apiKey_HERE",
-  authDomain: "PASTE_YOUR_authDomain_HERE",
-  projectId: "PASTE_YOUR_projectId_HERE",
-  storageBucket: "PASTE_YOUR_storageBucket_HERE",
-  messagingSenderId: "PASTE_YOUR_messagingSenderId_HERE",
-  appId: "PASTE_YOUR_appId_HERE"
+  apiKey: "AIzaSyDKxJE8Nub6KOq13kXw9yGW7eC8k2I9lzU",
+  authDomain: "mario-learning-faa6f.firebaseapp.com",
+  projectId: "mario-learning-faa6f",
+  storageBucket: "mario-learning-faa6f.firebasestorage.app",
+  messagingSenderId: "688643211917",
+  appId: "1:688643211917:web:2c0c16e51c43f0927e18c4"
 };
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
+
